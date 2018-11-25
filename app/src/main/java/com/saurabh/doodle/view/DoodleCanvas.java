@@ -15,9 +15,6 @@ import java.util.ArrayList;
 
 public class DoodleCanvas extends View {
 
-    private static final int STATE_STILL=0;
-    private static final int STATE_MOVING=1;
-
     private ArrayList<Paint> paintPenList =new ArrayList<>();
     private ArrayList<Path> pathPenList =new ArrayList<>();
     private ArrayList<Paint> removedPaintPenList =new ArrayList<>();
@@ -27,7 +24,6 @@ public class DoodleCanvas extends View {
     private int lineWidth =15;
     private static int DEFAULT_COLOR;
     private int currentColor;
-    private int state=0;
     private GetButtonCallback callbackForButton;
 
 
@@ -89,15 +85,12 @@ public class DoodleCanvas extends View {
         float x=event.getX();
         float y=event.getY();
         switch (event.getAction()){
-
             case MotionEvent.ACTION_DOWN:
                 startPath(x,y);
                 break;
-
             case MotionEvent.ACTION_MOVE:
                 updatePath(x,y);
                 break;
-
             case MotionEvent.ACTION_UP:
                 break;
         }
@@ -112,7 +105,6 @@ public class DoodleCanvas extends View {
     }
 
     private void updatePath(float x, float y) {
-        state=STATE_MOVING;
         latestPath.lineTo(x,y);
     }
 
